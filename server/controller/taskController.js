@@ -51,7 +51,7 @@ export const getController = catchAsyncError(async (req, res, next) => {
   if (!currentUser)
     return next(new ErrorHandler(401, "unauthrized user to view tasks"));
   let tasks = await TaskModel.find({ userID });
-  tasks = tasks.reverse();
+  tasks = tasks;
   return res.status(200).json({
     success: true,
     tasks,
