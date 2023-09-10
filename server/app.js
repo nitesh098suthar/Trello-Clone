@@ -11,16 +11,17 @@ dotenv.config({ path: "./config/.env" });
 
 const corsOptions = {
   methods: ["GET", "POST", "PUT", "DELETE"],
-  origin: process.env.FRONTEND_URI,
+  //   origin: process.env.FRONTEND_URI,
   credentials: true,
-  headers: ["Content-Type"],
 };
 
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors(corsOptions));
-// app.use("*", cors());
 
 app.use("/api/v1/task", taskRouter);
 app.use("/api/v1/auth", authRouter);
 app.use(errorMiddleware);
+app.get("/", (req, res) => {
+  res.send("Server is working on port", process.env.PORT);
+});
