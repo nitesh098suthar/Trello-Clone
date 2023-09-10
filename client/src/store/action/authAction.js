@@ -7,7 +7,6 @@ export const authInstance = axios.create({
   withCredentials: true,
   header: {
     "Content-Type": "application/json",
-    'Access-Control-Allow-Origin': 
   },
 });
 
