@@ -9,13 +9,8 @@ import authRouter from "./routes/authRouter.js";
 export const app = express();
 dotenv.config({ path: "./config/.env" });
 
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://trello-clone-9999.netlify.app/",
-];
-
 const corsOptions = {
-  origin: allowedOrigins,
+  origin: process.env.FRONTEND_URI,
   methods: "GET,PUT,POST,DELETE",
   credentials: true,
 };

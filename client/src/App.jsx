@@ -25,7 +25,7 @@ const App = () => {
     (state) => state.authReducer
   );
 
-  return (
+  return loading ? (<Spinner/>) : (
     <>
       <Router>
         <Header user={User} name={User?.name} isAuth={isAuthenticated} />
