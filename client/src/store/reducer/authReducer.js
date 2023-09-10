@@ -1,6 +1,6 @@
 import {createReducer} from "@reduxjs/toolkit";
 
-const initialValue = {};
+const initialValue = {loading:false};
 
 const authReducer = createReducer(initialValue, {
   //login
