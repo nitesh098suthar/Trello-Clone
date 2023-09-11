@@ -5,6 +5,7 @@ import catchAsyncError from "../middleware/catchAsyncError.js";
 
 
 export const addController = catchAsyncError(async (req, res, next) => {
+   res.setHeader("Access-Control-Allow-Credentials", "true");
   const { title, description, category } = req.body;
   const user = await UserModel.findById(req.id);
   if (!user) return next(new ErrorHandler(401, "unauthorized user"));
@@ -16,6 +17,7 @@ export const addController = catchAsyncError(async (req, res, next) => {
 });
 
 export const updateController = catchAsyncError(async (req, res, next) => {
+   res.setHeader("Access-Control-Allow-Credentials", "true");
   const userID = req.id;
   const taskId = req.params.id;
   const { title, description } = req.body;
@@ -32,6 +34,7 @@ export const updateController = catchAsyncError(async (req, res, next) => {
 });
 
 export const deleteController = async (req, res, next) => {
+   res.setHeader("Access-Control-Allow-Credentials", "true");
   const userID = req.id;
   const user = await UserModel.findById(userID);
   if (!user) return next(new ErrorHandler(401, "unauthorized to delete task"));
@@ -46,6 +49,7 @@ export const deleteController = async (req, res, next) => {
 };
 
 export const getController = catchAsyncError(async (req, res, next) => {
+   res.setHeader("Access-Control-Allow-Credentials", "true");
   const userID = req.id;
   const currentUser = await UserModel.findById(userID);
   if (!currentUser)
@@ -66,6 +70,7 @@ export const getController = catchAsyncError(async (req, res, next) => {
 //   return res.status(200).json({ success: true, task });
 // });
 export const dndController = catchAsyncError(async (req, res, next) => {
+   res.setHeader("Access-Control-Allow-Credentials", "true");
   const { id } = req.params;
   if (!id) return next(new ErrorHandler(404, "Task not found"));
   
