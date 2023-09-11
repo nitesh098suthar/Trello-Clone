@@ -8,7 +8,6 @@ import mailSender from "../utils/mailSender.js";
 import crypto from "crypto";
 
 export const regController = catchAsyncError(async (req, res, next) => {
-   res.setHeader("Access-Control-Allow-Credentials", "true");
   const { name, email, password } = req.body;
 
   const isUser = await AuthModel.findOne({ email });
@@ -20,7 +19,6 @@ export const regController = catchAsyncError(async (req, res, next) => {
 });
 
 export const loginController = catchAsyncError(async (req, res, next) => {
-   res.setHeader("Access-Control-Allow-Credentials", "true");
   const { email, password } = req.body;
 
   const isAvailable = await AuthModel.findOne({ email }).select("+password");
@@ -36,7 +34,6 @@ export const loginController = catchAsyncError(async (req, res, next) => {
 });
 
 export const logoutController = catchAsyncError(async (req, res, next) => {
-   res.setHeader("Access-Control-Allow-Credentials", "true");
   const tokenOption = {
     expires: new Date(Date.now()),
     samesite: "none",
@@ -165,7 +162,6 @@ export const resetController = catchAsyncError(async (req, res, next) => {
 });
 
 export const getController = catchAsyncError(async(req, res, next)=>{
- res.setHeader("Access-Control-Allow-Credentials", "true");
   const userId = req.id;
 
   if(!userId) return next(new ErrorHandler(401, "Unauthorized user"))
