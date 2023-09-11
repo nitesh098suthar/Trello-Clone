@@ -10,7 +10,6 @@ export const app = express();
 dotenv.config({ path: "./config/.env" });
 
 const corsOptions = {
-  origin: process.env.FRONTEND_URI,
   methods: "GET,PUT,POST,DELETE",
   credentials: true,
 };
@@ -23,5 +22,6 @@ app.use("/api/v1/task", taskRouter);
 app.use("/api/v1/auth", authRouter);
 app.use(errorMiddleware);
 app.get("/", (req, res) => {
+  res.setHeader("Access-Control-Allow-Credentials", "true");
   res.status(200).json({ msg: "Server is working ", success: true });
 });
