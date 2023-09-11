@@ -3,7 +3,6 @@ import { Draggable } from "react-beautiful-dnd";
 import {
   deleteAction,
   getAllTaskAction,
-  updateAction,
 } from "../../store/action/taskAction";
 import { useDispatch } from "react-redux";
 import Popup from "./Popup";
