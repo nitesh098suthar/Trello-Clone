@@ -36,7 +36,7 @@ export const loginController = catchAsyncError(async (req, res, next) => {
 export const logoutController = catchAsyncError(async (req, res, next) => {
   const tokenOption = {
     expires: new Date(Date.now()),
-    samesite: "none",
+    sameSite: "none",
     httpOnly: true,
     secure: true,
   };
