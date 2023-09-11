@@ -30,7 +30,7 @@ export const loginController = catchAsyncError(async (req, res, next) => {
   if (!isLegit)
     return next(new ErrorHandler(401, "Please enter correct password"));
 
-  return sendToken(isAvailable, 201, "Login Successfully", res);
+  return sendToken(isAvailable, 200, "Login Successfully", res);
 });
 
 export const logoutController = catchAsyncError(async (req, res, next) => {
@@ -42,7 +42,7 @@ export const logoutController = catchAsyncError(async (req, res, next) => {
     domain: '.trello-clone-d83k.vercel.app'
   };
 
-  return res.cookie("token", null, tokenOption).json({
+  return res.status(200).cookie("token", null, tokenOption).json({
     success: true,
     message: "Logout successfully",
   });
@@ -69,7 +69,7 @@ export const changeController = catchAsyncError(async (req, res, next) => {
   await AuthModel.findByIdAndUpdate(userId, { password: hashpassword });
   //   await isUser.save();
 
-  res.status(201).json({
+  res.status(200).json({
     success: true,
     message: "Password changed",
   });
@@ -121,7 +121,7 @@ export const forgetController = catchAsyncError(async (req, res, next) => {
   if (!tokenExpireUpdation)
     return next(new ErrorHandler(401, "resetTokenExpire updatation failed"));
 
-  return res.status(201).json({
+  return res.status(200).json({
     success: true,
     message: "Mail send successfully",
   });
@@ -171,7 +171,7 @@ export const getController = catchAsyncError(async(req, res, next)=>{
 
   if(!User) return next(new ErrorHandler(401, "User not found"))
 
-  return res.status(201).json({
+  return res.status(200).json({
     success : true,
     message : "User get successfully",
     User
