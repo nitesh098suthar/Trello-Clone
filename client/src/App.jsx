@@ -9,7 +9,6 @@ import Footer from "./components/Layout/Footer";
 import Header from "./components/Layout/Header";
 import { getUserAction } from "./store/action/authAction";
 import { useDispatch, useSelector } from "react-redux";
-import Protected from "./components/Protected";
 import Home from "./components/Layout/Home";
 import Spinner from "./components/Layout/Spinner";
 
@@ -25,37 +24,27 @@ const App = () => {
     (state) => state.authReducer
   );
 
-  return loading ? (<Spinner/>) : (
+  return loading ? (
+    <Spinner />
+  ) : (
     <>
       <Router>
-        <Header user={User} name={User?.name} isAuth={isAuthenticated} />
+        <Header user={User} isAuth={isAuthenticated} loading={loading} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route
             path="/task"
-            element={
-              <Protected isAuth={isAuthenticated}>
-                <Task />
-              </Protected>
-            }
+            element={isAuthenticated ? <Task /> : <Register />}
           />
 
           <Route
             path="/login"
-            element={
-              <Protected isAuth={!isAuthenticated}>
-                <Login />
-              </Protected>
-            }
+            element={!isAuthenticated ? <Login /> : <NotFound />}
           />
 
           <Route
             path="/register"
-            element={
-              <Protected isAuth={!isAuthenticated}>
-                <Register />
-              </Protected>
-            }
+            element={!isAuthenticated ? <Register /> : <NotFound />}
           />
 
           <Route path="*" element={<NotFound />} />
