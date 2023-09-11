@@ -85,7 +85,6 @@ function Task() {
   }, [tasks]);
 
   const dndFunc = async (result) => {
-    console.log(result);
     const { destination, draggableId, source } = result;
     if (
       destination === null ||
