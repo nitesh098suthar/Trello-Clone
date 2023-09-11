@@ -10,6 +10,7 @@ export const app = express();
 dotenv.config({ path: "./config/.env" });
 
 const corsOptions = {
+  origin: process.env.FRONTEND_URI,
   methods: "GET,PUT,POST,DELETE",
   credentials: true,
 };
