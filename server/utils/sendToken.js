@@ -6,7 +6,6 @@ export const sendToken = (user, statusCode, message, res) => {
     httpOnly: true,
     secure: true,
     sameSite: 'none',
-    domain: '.trello-clone-d83k.vercel.app'
   };
 
   res.status(Number(statusCode)).cookie("token", token, tokenOptions).json({
