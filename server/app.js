@@ -23,5 +23,5 @@ app.use("/api/v1/auth", authRouter);
 app.use(errorMiddleware);
 app.get("/", (req, res) => {
   res.setHeader("Access-Control-Allow-Credentials", "true");
-  res.status(200).json({ msg: "Server is working ", success: true });
+  res.status(200).json({ msg: "Server is up! ", success: true });
 });
