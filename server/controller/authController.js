@@ -39,12 +39,11 @@ export const logoutController = catchAsyncError(async (req, res, next) => {
     httpOnly: true,
     secure: true,
     sameSite: 'none',
-    domain: '.trello-clone-d83k.vercel.app'
   };
 
   res.cookie("token", null, tokenOption);
 
-  res.status(200).json({
+  return res.status(200).json({
     success: true,
     message: "Logged Out",
   });
