@@ -3,35 +3,36 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
 import { logoutAction } from "../../store/action/authAction";
+import Spinner from "./Spinner";
 
-const Header = ({ user, name, isAuth }) => {
-  const nav = useNavigate();
+const Header = ({ user, isAuth, loading }) => {
   const dispatch = useDispatch();
   const submitHandler = () => {
     dispatch(logoutAction());
-    nav("/");
   };
-  return (
+  return loading ? (
+    <Spinner />
+  ) : (
     <>
       <div className="bg-slate-50 w-[100%] px-6 py-2 shadow-lg border-b-[1px] border-slate-200">
         <div className="flex items-center justify-between p-3">
           {isAuth ? (
             <>
-              <h2 className="font-bold uppercase ">Hello, {user?.name}</h2>
+              <h2 className="font-bold uppercase ">{user?.name ? `Hello, ${user?.name}` : 'Hello Friend'}</h2>
               <div>
-              <Link
-                to="/task"
-                className="bg-slate-800 p-3 text-white rounded-lg "
-              >
-                Task
-              </Link>
+                <Link
+                  to="/task"
+                  className="bg-slate-800 p-3 text-white rounded-lg "
+                >
+                  Task
+                </Link>
 
-              <Link
-                onClick={submitHandler}
-                className="bg-slate-800 p-3 text-white rounded-lg mx-4 "
-              >
-                Logout
-              </Link>
+                <Link
+                  onClick={submitHandler}
+                  className="bg-slate-800 p-3 text-white rounded-lg mx-4 "
+                >
+                  Logout
+                </Link>
               </div>
             </>
           ) : (
