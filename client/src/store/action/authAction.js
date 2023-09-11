@@ -5,7 +5,7 @@ import { server_uri } from "../store.js";
 export const authInstance = axios.create({
   baseURL: server_uri + "/api/v1",
   withCredentials: true,
-  header: {
+  headers: {
     "Content-Type": "application/json",
   },
 });
