@@ -30,7 +30,6 @@ function Login({isAuth}) {
           name="email"
           type="email"
           placeholder="eg: address@service.tld"
-          id="email"
           value={user.email}
           onChange={inputHandler}
           className="bg-slate-100 w-full my-2 p-3 rounded-md"
@@ -43,7 +42,6 @@ function Login({isAuth}) {
           name="password"
           type="password"
           placeholder="Strong Password"
-          id="password"
           value={user.password}
           onChange={inputHandler}
           className="bg-slate-100 w-full my-2 p-3 rounded-md"
