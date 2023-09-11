@@ -11,7 +11,6 @@ export const authInstance = axios.create({
 });
 
 export const loginAction = (email, password) => async (dispatch) => {
-  console.log("login req");
   try {
     dispatch({ type: "loginReq" });
     //url ke baad jo {email, password} hai vo actual me req.body hai!
@@ -20,20 +19,16 @@ export const loginAction = (email, password) => async (dispatch) => {
       email,
       password,
     });
-
     //paylaod me jo data hai vo ye upper wala {data} hi hai
-    console.log("login resssss");
     dispatch({ type: "loginRes", payload: data });
     // phir ye payload reducer me access kar rahe hai!
   } catch (error) {
-    console.log(error);
     dispatch({ type: "loginRej", payload: error.response.data.error });
   }
 };
 
 export const signUpAction = (name, email, password) => async (dispatch) => {
   try {
-    console.log("signup req");
     dispatch({ type: "signUpReq" });
 
     const { data } = await authInstance.post("/auth/register", {
@@ -41,11 +36,9 @@ export const signUpAction = (name, email, password) => async (dispatch) => {
       email,
       password,
     });
-    console.log("signup ressss", data);
 
     dispatch({ type: "signUpRes", payload: data });
   } catch (error) {
-    console.log("signup rej", error.response.data);
     dispatch({ type: "signUpRej", payload: error.response.data.error });
   }
 };
@@ -103,10 +96,8 @@ export const getUserAction = () => async (dispatch) => {
 
 export const logoutAction = () => async (dispatch) => {
   try {
-    dispatch({ type: "logOutReq" });
-
+    dispatch({ type: "logOutReq" });    
     const { data } = await authInstance.get("/auth/logout");
-
     dispatch({ type: "logOutRes", payload: data });
   } catch (error) {
     dispatch({ type: "logOutRej", payload: error.response.data.error });
