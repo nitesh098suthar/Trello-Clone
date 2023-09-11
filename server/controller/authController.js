@@ -35,10 +35,11 @@ export const loginController = catchAsyncError(async (req, res, next) => {
 
 export const logoutController = catchAsyncError(async (req, res, next) => {
   const tokenOption = {
-    expires: new Date(Date.now()),
-    sameSite: "none",
+    expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
     httpOnly: true,
     secure: true,
+    sameSite: 'none',
+    domain: '.trello-clone-d83k.vercel.app'
   };
 
   return res.cookie("token", null, tokenOption).json({
