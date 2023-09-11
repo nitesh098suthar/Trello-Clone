@@ -18,7 +18,7 @@ Router.route("/login").post(loginController);
 Router.route("/password/change").put(authMiddleware, changeController);
 Router.route("/password/forget").post(forgetController);
 Router.route("/password/reset/:token").put(resetController);
-Router.route("/logout").get(authMiddleware, logoutController);
+Router.route("/logout").get(logoutController);
 Router.route("/me").get(authMiddleware, getController)
 
 export default Router;
