@@ -11,6 +11,7 @@ import { getUserAction } from "./store/action/authAction";
 import { useDispatch, useSelector } from "react-redux";
 import Home from "./components/Layout/Home";
 import Spinner from "./components/Layout/Spinner";
+import { Protected } from "./components/Protected";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -34,7 +35,11 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route
             path="/task"
-            element={isAuthenticated ? <Task /> : <Register />}
+            element={
+              <Protected isAuth={isAuthenticated}>
+                <Task />
+              </Protected>
+            }
           />
 
           <Route
